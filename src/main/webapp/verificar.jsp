@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Resultado</title>
-    <!-- Agrega los enlaces a los archivos CSS de Bootstrap aquí -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 </head>
@@ -22,9 +22,10 @@
         String palabra = request.getParameter("palabra");
         char[] caracteres = palabra.toCharArray();
         boolean esPalindromo = true;
-
         int i = 0;
         int j = caracteres.length - 1;
+
+        // Verificar si la palabra es un palíndromo
         while (i < j) {
             if (caracteres[i] != caracteres[j]) {
                 esPalindromo = false;
@@ -34,8 +35,29 @@
             j--;
         }
     %>
-    <p>Palabra ingresada: <%= palabra %></p>
-    <p>¿Es palíndromo? <%= esPalindromo ? "Sí" : "No" %></p>
+    <h2>Caracteres de la palabra (en orden de llegada):</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Posición</th>
+            <th>Carácter</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            for (int k = 0; k < caracteres.length; k++) {
+        %>
+        <tr>
+            <td><%= k %></td>
+            <td><%= caracteres[k] %></td>
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
+    <h2>¿Es palíndromo?</h2>
+    <p><%= esPalindromo ? "Sí" : "No" %></p>
     <a href="index.jsp" class="btn btn-primary">Volver</a>
 </div>
 </body>
